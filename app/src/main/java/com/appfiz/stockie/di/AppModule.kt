@@ -4,6 +4,7 @@ import android.util.Log
 import com.appfiz.stockie.BuildConfig
 import com.appfiz.stockie.data.repository.MarketRepositoryImpl
 import com.appfiz.stockie.data.service.YhApiService
+import com.appfiz.stockie.ui.watchlist.PopularViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.*
@@ -13,8 +14,13 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.features.observer.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import io.ktor.client.engine.android.Android as Android
+
+val viewModelModule = module {
+    viewModel { PopularViewModel(get()) }
+}
 
 val repositoryModule = module {
     single { MarketRepositoryImpl(get()) }
@@ -76,4 +82,5 @@ val appTestModule = module {
 
 val appModules = listOf(
             apiServiceModule,
-            repositoryModule)
+            repositoryModule,
+            viewModelModule)

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">stockie</string>
+
+    <string name="popular_watchlist_row_title">Popular watchlist</string>
 </resources>
